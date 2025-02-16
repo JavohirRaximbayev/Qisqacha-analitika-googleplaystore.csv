@@ -1,0 +1,21 @@
+import pandas as pd
+df=pd.read_csv('googleplaystore.csv')
+df.info()
+df.describe()
+df.head()
+df.tail()
+df['Category'].max()
+df['Rating'].median()
+
+a=df.groupby('Category')['Rating'].mean()
+b=a.min()
+print(b)
+c=a.idxmin()
+print(c)
+
+a=df[(df['Rating']>4.7)&(df['Type']=='Free')]
+print(a)
+
+df['Reviews']=pd.to_numeric(df['Reviews'],errors='coerce')
+
+df[(df['Rating']>4.5)&(df['Reviews']>100000)]
